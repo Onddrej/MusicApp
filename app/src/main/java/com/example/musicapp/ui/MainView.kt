@@ -42,6 +42,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -97,9 +98,14 @@ fun MainView() {
 
     val roundedCornerRadius = if (isSheetFullScreen) 0.dp else 12.dp
 
+    val brownColor = colorResource(id = R.color.brown)
+
     val bottomBar: @Composable () -> Unit = {
         if (currentScreen is Screen.DrawerScreen || currentScreen == Screen.BottomScreen.Home) {
-            BottomNavigation(Modifier.wrapContentSize()) {
+            BottomNavigation(
+                Modifier.wrapContentSize(),
+                backgroundColor = brownColor
+            ) {
                 screensInBottom.forEach { item ->
                     val isSelected = currentRoute == item.bRoute
                     Log.d(
